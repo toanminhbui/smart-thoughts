@@ -10,9 +10,9 @@ import os
 load_dotenv()
 
 # Access API key
-api_key = os.getenv('API_KEY')
+api_key = os.getenv('HF_TOKEN')
 
-hf_token = os.getenv('HF_TOKEN')
+hf_token = api_key
 mongo_link = os.getenv('MONGO_LINK')
 embedding_url = "https://api-inference.huggingface.co/pipeline/feature-extraction/sentence-transformers/all-MiniLM-L6-v2"
 
@@ -78,7 +78,7 @@ def retrieve_thoughts():
   		model="llama2",
   		prompt=f"Using this data that I have entered : {info}. Respond to this prompt: {question} like an assistant, answer consisely in 1 to 4 sentence"
 		)
-		info += f"Previous Question: {question}, Previous Response: {output["response"]}"
+		info += f"Previous Question: {question}, Previous Response: {output['response']}"
 		print(output["response"], '\n')
 		
 		question = input("search within your thoughts: ")
